@@ -1,4 +1,5 @@
 fn main() {
+    let a = [10,20,30,40,50]; 
     let mut counter = 0;
     
     let result = loop {
@@ -16,4 +17,20 @@ fn main() {
         number -= 1;
     }
     println!("LIFTOFF!!");
+
+    for num in (1..4).rev() {
+        println!("{}!", num);
+    }
+    println!("LIFTOFF!");
+
+    let mut index = 0;
+
+    while index < 5 {
+        println!("The value at index {} is: {}.", index, a[index]);
+        index += 1; 
+    }
+
+    for element in a.iter() {
+        println!("the value is {}.", element);
+    }
 }
