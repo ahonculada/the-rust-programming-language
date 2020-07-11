@@ -1,3 +1,12 @@
+///////////////////////////////////////////////////////////////////
+//// Rules of Reference
+/////////////////////////////////////////////////////////////////
+// 1) At any time you can have either of the following, not both
+//      x) One mutable reference
+//      x) Any number of immutable references
+// 2) References must always be valid
+
+
 fn main() {
     // clone
     let s1 = String::from("hello");
@@ -71,10 +80,13 @@ fn main() {
 }
 
 
-fn dangle() -> &String {
-    let s = String::from("Hello");
+fn dangle() -> &String {                // returns a reference to a String
+    let s = String::from("Hello");      // s is a new String
 
-    &s
+    &s                                  // we return a reference to string s
+                // after the bracket s goes out of scope and is droped 
+                // It's memory goes away. DANGER!
+                // Solution: dangle() should return a string, not a ref
 }
 
 
