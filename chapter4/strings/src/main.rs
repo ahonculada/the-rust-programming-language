@@ -20,7 +20,12 @@ fn main() {
     
     // after function 'x' is still valid
     makes_copy(x);
-    
+
+
+////////////////////////////////////////////////////////////////
+// Transferring ownership of return values
+////////////////////////////////////////////////////////////////
+
     // gives_ownership moves its return value into s1
     let _s1 = gives_ownership();
 
@@ -32,7 +37,58 @@ fn main() {
     let _s3 = takes_and_gives_back(s2);
 
 //    println!("s2 is: {}", s2);
+
+
+///////////////////////////////////////////////////////////////
+//// References and Borrowing
+///////////////////////////////////////////////////////////////
+
+    let s1 = String::from("hello");
+    // Pass by reference 
+    let len = calculate_length(&s1);
+    println!("The length of {} is: {}", s1, len);    
+
+//////////////////////////////////////////////////////////////
+//// Mutable References
+/////////////////////////////////////////////////////////////
+
+    let mut s = String::from("hello");
+    change(&mut s);
+
+    // Possible Data Race
+    let mut r1 = &mut s;
+//    let mut r2 = &mut s;
+    
+    // By having two mutable references to s in same 
+    // scope, this can lead to a data race.
+//    println!("{}, {}", r1, r2);
+    
+////////////////////////////////////////////////////////////
+//// Dangling References
+/////////////////////////////////////////////////////////////
+
+    let reference_to_nothing = dangle();
 }
+
+
+fn dangle() -> &String {
+    let s = String::from("Hello");
+
+    &s
+}
+
+
+
+fn change(some_string: &mut String) {
+    some_string.push_str(", world!");
+}
+
+
+fn calculate_length(s: &String) -> usize {
+    s.len()
+}
+
+
 
 fn takes_ownership(some_string: String) {
     println!("{}", some_string);
