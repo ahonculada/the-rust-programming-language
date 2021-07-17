@@ -12,7 +12,7 @@ fn main() {
     let s1 = String::from("hello");
     let s2 = s1.clone();
 
-    println!("{}", s2);
+    println!("s1 = {}, s2 = {}", s1, s2);
    
     // copy
     let x = 5;
@@ -26,7 +26,7 @@ fn main() {
     takes_ownership(s);
 
     let x = 5;
-    
+
     // after function 'x' is still valid
     makes_copy(x);
 
@@ -76,18 +76,18 @@ fn main() {
 //// Dangling References
 /////////////////////////////////////////////////////////////
 
-    let reference_to_nothing = dangle();
+    //let reference_to_nothing = dangle();
 }
 
 
-fn dangle() -> &String {                // returns a reference to a String
-    let s = String::from("Hello");      // s is a new String
-
-    &s                                  // we return a reference to string s
-                // after the bracket s goes out of scope and is droped 
-                // It's memory goes away. DANGER!
-                // Solution: dangle() should return a string, not a ref
-}
+//fn dangle() -> &String {                // returns a reference to a String
+//    let s = String::from("Hello");      // s is a new String
+//
+//    &s                                  // we return a reference to string s
+//                // after the bracket s goes out of scope and is droped 
+//                // It's memory goes away. DANGER!
+//                // Solution: dangle() should return a string, not a ref
+//}
 
 
 

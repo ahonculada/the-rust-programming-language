@@ -6,6 +6,7 @@ fn main() {
     let mut s = String::from("hello world");
     let word = first_word(&s);
     
+    println!("first word is: {}", word);
     s.clear();
 
     let s = String::from("Hello World");
@@ -14,13 +15,13 @@ fn main() {
 
 }
 
-fn first_word(s: &String) -> usize {
+fn first_word(s: &str) -> &str {
     let bytes = s.as_bytes();
 
     for (i, &item) in bytes.iter().enumerate() {
         if item == b' ' {
-            return i;
+            return &s[..i];
         }
     }
-    s.len()
+    &s[..]
 }
